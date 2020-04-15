@@ -21,11 +21,20 @@ describe DockingStation do
   end
 
   describe ".dock_bike" do
+    context "station empty" do
     it "adds a bike to docking_station" do
       bike = Bike.new
       expect { subject.dock_bike(bike) }.to change(subject, :bikes).to include(bike)
     end
   end
+    context "station full" do
+      it "returns station full" do
+      bike = Bike.new
+      subject.bikes << Bike.new
+      expect { subject.dock_bike(bike) }.to raise_error(RuntimeError, "station full.")
+    end
+  end
+end
 
   describe ".bikes" do
     it "lets us read an array" do
