@@ -6,4 +6,6 @@ Small program that allows bikes to come in and out of a "Boris Bikes" station.
 | --- | --- |
 | Person |  |
 | Bike | working? |
-| Docking station | release_bike |     
+| Docking station | release_bike |
+|                 | dock_bike |
+|                 | dock_list |
