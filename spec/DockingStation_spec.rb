@@ -18,4 +18,13 @@ describe DockingStation do
       expect { subject.dock_bike(bike) }.to change(subject, :bikes).to include(bike)
     end
   end
+
+  describe ".bikes" do
+    it "lets us read an array" do
+      expect(subject.bikes).to be_a_kind_of(Array)
+    end
+    it "does not let us rewrite the array" do
+      subject.bikes << Bike.new
+    end
+  end
 end
