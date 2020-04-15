@@ -7,8 +7,16 @@ describe DockingStation do
   end
 
   describe ".release_bike" do
-    it "returns a Bike object" do
-      expect(subject.release_bike).to be_a_kind_of(Bike)
+    context "it has bikes" do
+      it "returns a Bike object" do
+        subject.bikes << Bike.new
+        expect(subject.release_bike).to be_a_kind_of(Bike)
+      end
+    end
+    context "it doesn't have bikes" do
+      it "raises an no bikes error" do
+        expect { subject.release_bike }.to raise_error(RuntimeError, "No bikes left.")
+      end
     end
   end
 
@@ -22,9 +30,6 @@ describe DockingStation do
   describe ".bikes" do
     it "lets us read an array" do
       expect(subject.bikes).to be_a_kind_of(Array)
-    end
-    it "does not let us rewrite the array" do
-      subject.bikes << Bike.new
     end
   end
 end
