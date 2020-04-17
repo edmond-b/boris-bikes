@@ -1,5 +1,6 @@
 class DockingStation
 
+  DEFAULT_CAPACITY = 20
   attr_reader :shed
 
   def initialize
@@ -17,7 +18,7 @@ class DockingStation
   private
 
   def full?
-    @shed.count >= 20 ? (raise "station full.") : false
+    @shed.count >= DEFAULT_CAPACITY ? (raise "station full.") : false
   end
 
   def empty?

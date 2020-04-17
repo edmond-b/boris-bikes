@@ -30,16 +30,16 @@ describe DockingStation do
     context "station full" do
       it "returns station full" do
         bike = Bike.new
-        20.times { subject.dock_bike(bike) }
+        DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike(bike) }
         expect { subject.dock_bike(bike) }.to raise_error(RuntimeError, "station full.")
       end
     end
     context 'add 20th bike' do
       it 'adds one more' do
         bike = Bike.new
-        19.times { subject.dock_bike(Bike.new) }
+        (DockingStation::DEFAULT_CAPACITY - 1).times { subject.dock_bike(Bike.new) }
         expect { subject.dock_bike(bike) }.to change(subject, :shed).to include(bike)
-      end 
+      end
     end
   end
 
