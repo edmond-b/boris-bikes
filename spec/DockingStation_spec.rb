@@ -6,6 +6,15 @@ describe DockingStation do
     expect(subject).to respond_to(:release_bike)
   end
 
+  describe 'set capacity' do
+    it 'Lets you choose max capacity' do
+      expect(DockingStation.new(25).capacity).to eq(25)
+    end
+    it 'Defult capacity set to 20' do
+      expect(DockingStation.new().capacity).to eq(20)
+    end
+  end
+
   describe ".release_bike" do
     context "it has bikes" do
       it "returns a Bike object" do
