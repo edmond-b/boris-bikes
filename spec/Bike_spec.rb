@@ -1,7 +1,7 @@
 require 'Bike'
 
 describe Bike do
-  it 'bike responds ro working?' do
+  it 'bike responds to working?' do
     expect(subject).to respond_to(:working?)
   end
   

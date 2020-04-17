@@ -9,7 +9,7 @@ describe DockingStation do
   describe ".release_bike" do
     context "it has bikes" do
       it "returns a Bike object" do
-        subject.bikes << Bike.new
+        subject.shed << Bike.new
         expect(subject.release_bike).to be_a_kind_of(Bike)
       end
     end
@@ -22,23 +22,30 @@ describe DockingStation do
 
   describe ".dock_bike" do
     context "station empty" do
-    it "adds a bike to docking_station" do
-      bike = Bike.new
-      expect { subject.dock_bike(bike) }.to change(subject, :bikes).to include(bike)
+      it "adds a bike to docking_station" do
+        bike = Bike.new
+        expect { subject.dock_bike(bike) }.to change(subject, :shed).to include(bike)
+      end
     end
-  end
     context "station full" do
       it "returns station full" do
-      bike = Bike.new
-      subject.bikes << Bike.new
-      expect { subject.dock_bike(bike) }.to raise_error(RuntimeError, "station full.")
+        bike = Bike.new
+        20.times { subject.dock_bike(bike) }
+        expect { subject.dock_bike(bike) }.to raise_error(RuntimeError, "station full.")
+      end
+    end
+    context 'add 20th bike' do
+      it 'adds one more' do
+        bike = Bike.new
+        19.times { subject.dock_bike(Bike.new) }
+        expect { subject.dock_bike(bike) }.to change(subject, :shed).to include(bike)
+      end 
     end
   end
-end
 
   describe ".bikes" do
     it "lets us read an array" do
-      expect(subject.bikes).to be_a_kind_of(Array)
+      expect(subject.shed).to be_a_kind_of(Array)
     end
   end
 end

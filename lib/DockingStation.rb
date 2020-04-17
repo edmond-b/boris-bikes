@@ -1,19 +1,18 @@
 class DockingStation
 
-  attr_reader :bikes
+  attr_reader :shed
 
   def initialize
-    @bikes = []
+    @shed = []
   end
 
   def release_bike
-    raise "No bikes left." if @bikes.empty?
-    @bikes.sample
+    raise "No bikes left." if @shed.empty?
+    @shed.sample
   end
 
   def dock_bike(bike)
-    raise "station full." if !@bikes.empty?
-    @bikes << bike
+    raise "station full." if @shed.count >= 20
+    @shed << bike
   end
-
 end
