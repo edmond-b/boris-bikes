@@ -7,12 +7,20 @@ class DockingStation
   end
 
   def release_bike
-    raise "No bikes left." if @shed.empty?
-    @shed.sample
+    empty? ? @shed.sample : false
   end
 
   def dock_bike(bike)
-    raise "station full." if @shed.count >= 20
-    @shed << bike
+      @shed << bike if !full?
+  end
+
+  private
+
+  def full?
+    @shed.count >= 20 ? (raise "station full.") : false
+  end
+
+  def empty?
+    shed.empty? ? (raise "No bikes left.") : true
   end
 end
